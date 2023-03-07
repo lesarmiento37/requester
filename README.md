@@ -32,6 +32,7 @@ The file deployment.sh have five stages: BUILD, TEST, CODE ANALYSIS. DEPLOY, FIN
 
 ### BUILD STAGE
 In this stage the process build a docker image with the existing code in the directory app/ and push an image to the dockerhub
+
 ![image](https://user-images.githubusercontent.com/17441125/223328515-5b4779f2-334f-44c6-8be0-b2f6e3447b0d.png)
 
 ### TEST STAGE
@@ -102,6 +103,7 @@ def test_retrieve_name():
 
 ## SONAR SECURITY OUTPUT
 In that case sonar shows a security vulnerability because the code have an exposed endpoint:
+
 ![image](https://user-images.githubusercontent.com/17441125/223331709-36cbca46-5d70-4223-9384-6ccfadf117a1.png)
 
 
