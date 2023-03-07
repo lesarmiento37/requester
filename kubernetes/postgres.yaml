@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres-container
+        image: postgres:15.2
+        env:
+          - name: POSTGRES_USER
+            value: leonardo
+          - name: POSTGRES_PASSWORD
+            value: 2f5ae96c
+          - name: POSTGRES_DB
+            value: sonar
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5432

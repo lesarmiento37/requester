@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: sonarqube
+spec:
+  selector:
+    matchLabels:
+     app: sonarqube
+  replicas: 1
+  template:
+    metadata:
+      name: sonarqube
+      labels:
+        app: sonarqube
+    spec:
+      containers:
+      - name: sonarqube
+        image: sonarqube:7.9-community
+        env:
+          - name: sonar.jdbc.username
+            value: leonardo
+          - name: sonar.jdbc.url
+            value: "jdbc:postgresql://10.244.0.154:5432/sonar"
+          - name: sonar.jdbc.password
+            value: 2f5ae96c
+          - name: TZ
+            value: America/Bogota
+        ports:
+          - containerPort: 9000
+            protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarqube
+  labels:
+    app: sonarqube
+spec:
+  ports:
+    - port: 9000
+      protocol: TCP
+  selector:
+    app: sonarqube
+  type: NodePort
